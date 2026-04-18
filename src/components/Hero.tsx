@@ -18,7 +18,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden grid-pattern"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden grid-pattern pt-20 sm:pt-0"
     >
       {/* Ambient blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -53,12 +53,12 @@ export default function Hero() {
         variants={stagger}
         initial="hidden"
         animate="visible"
-        className="relative z-10 text-center px-6 max-w-8xl mx-auto"
+        className="relative z-10 text-center px-4 sm:px-6 max-w-8xl mx-auto w-full"
       >
         {/* Status badge */}
         <motion.div variants={up} className="mb-8">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-[hsl(var(--primary)/0.35)] bg-[hsl(var(--primary)/0.07)] text-[hsl(var(--primary))]">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium border border-[hsl(var(--primary)/0.35)] bg-[hsl(var(--primary)/0.07)] text-[hsl(var(--primary))] max-w-full">
+            <span className="w-2 h-2 shrink-0 rounded-full bg-emerald-400 animate-pulse" />
             {personalInfo.availability}
           </span>
         </motion.div>
@@ -67,7 +67,7 @@ export default function Hero() {
         <motion.h1
           variants={up}
           className="font-bold tracking-tight mb-6"
-          style={{ fontSize: "clamp(2.4rem, 6vw, 4rem)", lineHeight: 1.13 }}
+          style={{ fontSize: "clamp(1.75rem, 7vw, 4rem)", lineHeight: 1.18 }}
         >
           <span className="block">
             I turn complex <span className="gradient-text">UX problems</span>
@@ -126,7 +126,7 @@ export default function Hero() {
         {/* CTA buttons */}
         <motion.div
           variants={up}
-          className="flex flex-wrap items-center justify-center gap-3 mb-10"
+          className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10"
         >
           <motion.a
             href="#projects"

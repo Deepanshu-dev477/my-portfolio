@@ -252,11 +252,13 @@ export const skills = {
     { name: "REST APIs", icon: "SiPostman", color: "#FF6C37" },
     { name: "React Query", icon: "SiReactquery", color: "#FF4154" },
   ],
-  "Backend": [
+  "Backend & .NET": [
     { name: "Node.js", icon: "SiNodedotjs", color: "#339933" },
     { name: "Express.js", icon: "SiExpress", color: "#ffffff" },
     { name: "PHP", icon: "SiPhp", color: "#777BB4" },
     { name: "Laravel", icon: "SiLaravel", color: "#FF2D20" },
+    { name: "ASP.NET MVC", icon: "SiDotnet", color: "#512BD4" },
+    { name: "ASP.NET WebForms", icon: "SiDotnet", color: "#512BD4" },
   ],
   "Database": [
     { name: "MySQL", icon: "SiMysql", color: "#4479A1" },
@@ -266,6 +268,12 @@ export const skills = {
     { name: "Figma", icon: "SiFigma", color: "#F24E1E" },
     { name: "Adobe XD", icon: "SiAdobexd", color: "#FF61F6" },
     { name: "Photoshop", icon: "SiAdobephotoshop", color: "#31A8FF" },
+    { name: "Illustrator", icon: "SiAdobeillustrator", color: "#FF9A00" },
+    { name: "Canva", icon: "SiCanva", color: "#00C4CC" },
+  ],
+  "CMS & Platforms": [
+    { name: "WordPress", icon: "SiWordpress", color: "#21759B" },
+    { name: "Shopify", icon: "SiShopify", color: "#96BF48" },
   ],
   "Tools": [
     { name: "Git", icon: "SiGit", color: "#F05032" },
