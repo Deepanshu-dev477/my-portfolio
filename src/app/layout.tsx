@@ -6,9 +6,9 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Deepanshu Kumar — UX Engineer & Frontend Developer",
+  title: "Deepanshu Kumar — UX Design Technologist & Frontend Engineer",
   description:
-    "Product-Focused UX Engineer with 5.6+ years of experience in frontend development and UI/UX design. Specialized in React.js, Next.js, and modern frontend architecture.",
+    "UX Design Technologist with 5.6+ years building design systems and scalable React products. Specialized in Figma architecture, AI-assisted workflows, and accessible component systems.",
 };
 
 export default function RootLayout({

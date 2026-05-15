@@ -4,9 +4,20 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { projects } from "@/data/portfolio";
 import { HiArrowLeft, HiLockClosed, HiLightningBolt } from "react-icons/hi";
-import { TbTarget, TbBulb, TbTrendingUp, TbBrain, TbPuzzle, TbArrowRight } from "react-icons/tb";
+import { TbTarget, TbBulb, TbTrendingUp, TbBrain, TbPuzzle, TbArrowRight, TbAccessible, TbPalette, TbStack2 } from "react-icons/tb";
 
-type Project = (typeof projects)[0];
+type TechDeepDive = {
+  architecture: string;
+  challenges: string[];
+  keyDecisions: string;
+  designSystemDecisions?: string;
+  accessibilityWork?: string;
+  designProcess?: string;
+};
+
+type Project = Omit<(typeof projects)[0], "techDeepDive"> & {
+  techDeepDive: TechDeepDive;
+};
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -210,7 +221,7 @@ export default function CaseStudyClient({ project }: { project: Project }) {
           </motion.section>
 
           {/* ── Why This Approach ── */}
-          <motion.section variants={up} className="mb-14">
+          <motion.section variants={up} className="mb-10">
             <div
               className="p-6 rounded-2xl border-l-4"
               style={{
@@ -229,6 +240,84 @@ export default function CaseStudyClient({ project }: { project: Project }) {
               </p>
             </div>
           </motion.section>
+
+          {/* ── Design system decisions (admin-dashboard only) ── */}
+          {dive.designSystemDecisions && (
+            <motion.section variants={up} className="mb-10">
+              <div className="flex items-center gap-3 mb-5">
+                <div
+                  className="p-2.5 rounded-xl"
+                  style={{ background: `${accentColor}15` }}
+                >
+                  <TbStack2 size={20} style={{ color: accentColor }} />
+                </div>
+                <h2 className="text-xl font-bold text-[hsl(var(--foreground))]">
+                  Design system decisions
+                </h2>
+              </div>
+              <div className="pl-12">
+                {dive.designSystemDecisions.split("\n\n").map((para, i) => (
+                  <p
+                    key={i}
+                    className="text-[15px] text-[hsl(var(--muted-foreground))] leading-[1.85] mb-4 last:mb-0"
+                  >
+                    {para}
+                  </p>
+                ))}
+              </div>
+            </motion.section>
+          )}
+
+          {/* ── Accessibility work (sims-panel) ── */}
+          {dive.accessibilityWork && (
+            <motion.section variants={up} className="mb-10">
+              <div className="flex items-center gap-3 mb-5">
+                <div
+                  className="p-2.5 rounded-xl"
+                  style={{ background: `${accentColor}15` }}
+                >
+                  <TbAccessible size={20} style={{ color: accentColor }} />
+                </div>
+                <h2 className="text-xl font-bold text-[hsl(var(--foreground))]">
+                  Accessibility work
+                </h2>
+              </div>
+              <div className="pl-12">
+                {dive.accessibilityWork.split("\n").map((line, i) => (
+                  <p
+                    key={i}
+                    className={`text-[15px] text-[hsl(var(--muted-foreground))] leading-[1.85] ${
+                      line.startsWith("·") ? "pl-3" : ""
+                    } mb-1 last:mb-0`}
+                  >
+                    {line}
+                  </p>
+                ))}
+              </div>
+            </motion.section>
+          )}
+
+          {/* ── Design process ── */}
+          {dive.designProcess && (
+            <motion.section variants={up} className="mb-14">
+              <div className="flex items-center gap-3 mb-5">
+                <div
+                  className="p-2.5 rounded-xl"
+                  style={{ background: `${accentColor}15` }}
+                >
+                  <TbPalette size={20} style={{ color: accentColor }} />
+                </div>
+                <h2 className="text-xl font-bold text-[hsl(var(--foreground))]">
+                  Design process
+                </h2>
+              </div>
+              <div className="pl-12">
+                <p className="text-[15px] text-[hsl(var(--muted-foreground))] leading-[1.85]">
+                  {dive.designProcess}
+                </p>
+              </div>
+            </motion.section>
+          )}
 
           {/* ── Confidentiality notice ── */}
           <motion.div

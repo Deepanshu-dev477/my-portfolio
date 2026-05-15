@@ -72,7 +72,7 @@ export default function Contact() {
             {personalInfo.availability}
           </div>
           <p className="text-[hsl(var(--muted-foreground))] max-w-md mx-auto text-sm leading-relaxed">
-            I&apos;m looking for a Senior Frontend / UX Engineering role where product thinking is valued as much as code quality. Remote-friendly or New Delhi.
+            Particularly interested in design system, AI tooling, and design-to-code workflow roles. Remote-friendly or New Delhi.
           </p>
         </motion.div>
 

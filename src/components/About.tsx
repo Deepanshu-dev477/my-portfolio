@@ -137,6 +137,36 @@ export default function About() {
               ))}
             </div>
 
+            {/* Deep ownership card */}
+            <div className="p-5 rounded-2xl bg-[hsl(var(--secondary))] border border-[hsl(var(--border))]">
+              <h3 className="text-sm font-bold text-[hsl(var(--foreground))] mb-2">Deep ownership. Real scale.</h3>
+              <p className="text-[13px] text-[hsl(var(--muted-foreground))] leading-[1.75]">
+                I&apos;ve owned the full product lifecycle — from Figma component systems to production React — across 5 SaaS products serving 10,000+ users. That depth shapes how I think about design system architecture: not just what ships today, but what scales for the next 10 teams.
+              </p>
+            </div>
+
+            {/* Design system stats block */}
+            <div className="p-5 rounded-2xl bg-[hsl(var(--secondary))] border border-[hsl(var(--border))]">
+              <h3 className="text-xs font-bold text-[hsl(var(--foreground))] uppercase tracking-wider mb-4">Design System Impact</h3>
+              <div className="space-y-3">
+                {[
+                  { value: "30+", label: "Shared UI components built" },
+                  { value: "12", label: "Custom React hooks across 4 products" },
+                  { value: "4", label: "Products sharing the same design system" },
+                  { value: "25%", label: "Dev time saved per feature via shared components" },
+                  { value: "WCAG AA", label: "Accessibility standard met across all products" },
+                ].map(({ value, label }) => (
+                  <div key={label} className="flex items-center gap-3">
+                    <div className="text-base font-bold gradient-text leading-none w-20 shrink-0 text-right">{value}</div>
+                    <div className="text-[12px] text-[hsl(var(--muted-foreground))] leading-snug">{label}</div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-[11px] text-[hsl(var(--muted-foreground))] mt-4 pt-3 border-t border-[hsl(var(--border))] leading-relaxed italic">
+                Led design system architecture from scratch — tokens, variants, component API design, and developer documentation.
+              </p>
+            </div>
+
             {/* Education */}
             <div className="p-5 rounded-2xl bg-[hsl(var(--secondary))] border border-[hsl(var(--border))]">
               <div className="flex items-center gap-2 mb-4">

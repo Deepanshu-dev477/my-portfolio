@@ -70,10 +70,10 @@ export default function Hero() {
           style={{ fontSize: "clamp(1.75rem, 7vw, 4rem)", lineHeight: 1.18 }}
         >
           <span className="block">
-            I turn complex <span className="gradient-text">UX problems</span>
+            I build <span className="gradient-text">design systems</span>
           </span>
           <span className="block">
-            into scalable{" "}
+            and AI-ready{" "}
             <span className="relative inline-block">
               frontend products
               <motion.span
@@ -82,7 +82,8 @@ export default function Hero() {
                 transition={{ delay: 1.2, duration: 0.6 }}
                 className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-linear-to-r from-violet-500 to-cyan-400 origin-left"
               />
-            </span>
+            </span>{" "}
+            that scale
           </span>
         </motion.h1>
 

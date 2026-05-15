@@ -1,18 +1,18 @@
 export const personalInfo = {
   name: "Deepanshu Kumar",
-  role: "UX Engineer & Frontend Architect",
-  tagline: "I turn complex product problems into clean, scalable frontend experiences.",
+  role: "UX Design Technologist · Design Systems · AI-Assisted Workflows",
+  tagline: "I build design systems and AI-ready frontend products that scale.",
   valueProp:
     "5.6 years shipping React & Next.js SaaS — I sit at the intersection of design systems, product thinking, and engineering precision.",
   email: "kdeepanshu475@gmail.com",
   phone: "+91-9811297177",
   location: "New Delhi, India",
   linkedin: "https://linkedin.com/in/frontenduiux-bydeepanshu",
-  availability: "Open to Senior Frontend / UX Engineering roles",
+  availability: "Open to Senior UX Design Technologist / Design Systems roles",
   techBadges: ["React.js", "Next.js", "Zustand", "TypeScript", "Figma", "Tailwind CSS"],
   profile: [
     "I'm the engineer who asks *why* before *how* — bridging the gap between product vision and production code. With 5.6+ years at the same company, I've owned full product lifecycles: from Figma wireframes to deployed SaaS used by 10,000+ students across India.",
-    "My background in UI/UX design means I don't just implement designs — I question them, improve them, and build component systems that make future iterations 3× faster. I've modernized two legacy ASPX codebases, led a design system from scratch, and mentored a team of frontend engineers.",
+    "My background in UI/UX design means I don't just implement designs — I question them, improve them, and build component systems that make future iterations 3× faster. Right now I'm focused on making design systems AI-ready — structuring Figma libraries and component tokens so they work reliably with agentic design workflows, not just human designers. I've modernized two legacy ASPX codebases, led a design system from scratch, and mentored a team of frontend engineers.",
     "I specialize in high-complexity UX: real-time exam engines, dynamic document builders, and data-heavy admin dashboards — the kind of products where both pixel precision and architectural decisions matter.",
   ],
   whatIBring: [
@@ -95,6 +95,38 @@ export const experiences = [
 
 export const projects = [
   {
+    slug: "admin-dashboard",
+    title: "Internal B2B Admin Dashboard",
+    subtitle: "Enterprise Tool",
+    featured: false,
+    problem:
+      "Key account operations — license generation, subscription lifecycle, overdue tracking — were managed via spreadsheets. Manual, slow, and error-prone at scale.",
+    solution:
+      "Built a React admin panel with role-based views, one-click key generation, automated overdue alerts, subscription plan management, and an audit trail for all actions.",
+    impact:
+      "Key issuance time cut by 70%. Manual data entry errors eliminated. Ops team now manages 500+ accounts from a single dashboard.",
+    tags: ["React.js", "Zustand", "REST APIs", "PHP/Laravel"],
+    metrics: [
+      { value: "70%", label: "Faster Key Issuance" },
+      { value: "500+", label: "Accounts Managed" },
+      { value: "0", label: "Manual Entry Errors" },
+    ],
+    techDeepDive: {
+      architecture: "React + Zustand with role-based store slices — admin sees full account tree, ops staff sees filtered view. Each domain (keys, subscriptions, overdues) is a self-contained feature module with its own slice, hooks, and API layer.",
+      challenges: [
+        "Key generation needed to be idempotent — same input always produces the same key, preventing accidental duplicates",
+        "Overdue alerts: polling vs. webhooks — chose long-polling (30s) since backend couldn't support webhooks at the time",
+        "Audit trail UI: virtualized list (react-window) to handle 10K+ log entries without scroll jank",
+        "Bulk operations (mass-expire keys, batch plan upgrades) needed optimistic UI with rollback on API failure",
+      ],
+      keyDecisions: "Feature-module architecture meant each domain team could work independently without merge conflicts. Kept business logic in custom hooks (not components) so the same logic could be reused across admin and ops views.",
+      designSystemDecisions: "Role-based UI meant components needed to adapt to context without duplicating code. Built a shared component layer with prop-driven variants — the same Table, Badge, and ActionMenu components power both admin and ops views, controlled purely through props and role context.\n\nThis mirrors how enterprise design systems work at scale: one component, multiple contexts, zero duplication.",
+      designProcess: "Designed in Figma before a single line of code — component variants mapped to React props, spacing tokens used as Figma styles, ensuring pixel-accurate handoff with zero back-and-forth on implementation.",
+    },
+    color: "from-orange-600 to-red-800",
+    accentColor: "#ea580c",
+  },
+  {
     slug: "exam-player",
     title: "Gate Banking Online Exam Player",
     subtitle: "SaaS · EdTech",
@@ -120,39 +152,10 @@ export const projects = [
         "Optimistic answer saves with queue-based sync — exam continues even during brief network drops",
       ],
       keyDecisions: "Chose Zustand over Redux for per-session isolation without boilerplate. Avoided server components for the exam player itself — client-only to guarantee real-time reactivity without hydration lag.",
+      designProcess: "Designed in Figma before a single line of code — component variants mapped to React props, spacing tokens used as Figma styles, ensuring pixel-accurate handoff with zero back-and-forth on implementation.",
     },
     color: "from-violet-600 to-purple-800",
     accentColor: "#7c3aed",
-  },
-  {
-    slug: "questopedia",
-    title: "Questopedia — Question Paper Generator",
-    subtitle: "SaaS · EdTech Tool",
-    featured: true,
-    problem:
-      "Educators spent 3–4 hours manually formatting question papers in Word — prone to errors, inconsistent formatting, and impossible to reuse.",
-    solution:
-      "Shipped a dynamic paper builder with 8 configurable section types, drag-and-drop grouping, instruction blocks, marks-per-question logic, and a real-time print preview that exports clean PDFs.",
-    impact:
-      "Reduced paper creation time from 3 hours → under 20 minutes. Adopted by 200+ educators within 2 months of launch.",
-    tags: ["React.js", "JavaScript", "CSS3", "REST APIs"],
-    metrics: [
-      { value: "200+", label: "Educators" },
-      { value: "90%", label: "Time Saved" },
-      { value: "8+", label: "Section Types" },
-    ],
-    techDeepDive: {
-      architecture: "React component tree mirroring the document structure — Section → Part → QuestionGroup → Question. Each level manages its own state slice; a root reducer assembles the final schema for print/export.",
-      challenges: [
-        "Real-time print preview required a hidden iframe synced to editor state via postMessage — no third-party lib",
-        "Marks-per-question logic needed to cascade up (section totals auto-update) without circular state updates",
-        "Drag-and-drop reordering with stable keys — used nanoid for question IDs to survive list mutations",
-        "PDF export: window.print() scoped to the preview iframe with injected print-only CSS",
-      ],
-      keyDecisions: "Kept state local to the editor (no server round-trips during editing) for zero-latency preview updates. Chose a schema-first data model so the same structure feeds both preview and API submission.",
-    },
-    color: "from-cyan-600 to-blue-800",
-    accentColor: "#0891b2",
   },
   {
     slug: "sims-panel",
@@ -180,39 +183,42 @@ export const projects = [
         "Stale-while-revalidate pattern for course lists — instant perceived performance without client-side loading spinners",
       ],
       keyDecisions: "Rebuilt routing structure from flat pages to nested layouts — this alone eliminated 3 categories of navigation bugs. Chose Next.js server components for data fetching to remove waterfall API calls.",
+      accessibilityWork: "Audited using Lighthouse and axe DevTools. Key fixes:\n· Replaced div-based navigation with semantic nav elements and landmark roles — improved screen reader flow significantly\n· Added focus-visible outlines across all interactive elements (missing entirely in the legacy design)\n· Colour contrast ratio brought to 4.5:1 minimum across all text and background combinations\n· Keyboard navigation fully functional on test registration and course tracking flows — previously mouse-only",
+      designProcess: "Designed in Figma before a single line of code — component variants mapped to React props, spacing tokens used as Figma styles, ensuring pixel-accurate handoff with zero back-and-forth on implementation.",
     },
     color: "from-emerald-600 to-teal-800",
     accentColor: "#059669",
   },
   {
-    slug: "admin-dashboard",
-    title: "Internal B2B Admin Dashboard",
-    subtitle: "Enterprise Tool",
-    featured: false,
+    slug: "questopedia",
+    title: "Questopedia — Question Paper Generator",
+    subtitle: "SaaS · EdTech Tool",
+    featured: true,
     problem:
-      "Key account operations — license generation, subscription lifecycle, overdue tracking — were managed via spreadsheets. Manual, slow, and error-prone at scale.",
+      "Educators spent 3–4 hours manually formatting question papers in Word — prone to errors, inconsistent formatting, and impossible to reuse.",
     solution:
-      "Built a React admin panel with role-based views, one-click key generation, automated overdue alerts, subscription plan management, and an audit trail for all actions.",
+      "Shipped a dynamic paper builder with 8 configurable section types, drag-and-drop grouping, instruction blocks, marks-per-question logic, and a real-time print preview that exports clean PDFs.",
     impact:
-      "Key issuance time cut by 70%. Manual data entry errors eliminated. Ops team now manages 500+ accounts from a single dashboard.",
-    tags: ["React.js", "Zustand", "REST APIs", "PHP/Laravel"],
+      "Reduced paper creation time from 3 hours → under 20 minutes. Adopted by 200+ educators within 2 months of launch.",
+    tags: ["React.js", "JavaScript", "CSS3", "REST APIs"],
     metrics: [
-      { value: "70%", label: "Faster Key Issuance" },
-      { value: "500+", label: "Accounts Managed" },
-      { value: "0", label: "Manual Entry Errors" },
+      { value: "200+", label: "Educators" },
+      { value: "90%", label: "Time Saved" },
+      { value: "8+", label: "Section Types" },
     ],
     techDeepDive: {
-      architecture: "React + Zustand with role-based store slices — admin sees full account tree, ops staff sees filtered view. Each domain (keys, subscriptions, overdues) is a self-contained feature module with its own slice, hooks, and API layer.",
+      architecture: "React component tree mirroring the document structure — Section → Part → QuestionGroup → Question. Each level manages its own state slice; a root reducer assembles the final schema for print/export.",
       challenges: [
-        "Key generation needed to be idempotent — same input always produces the same key, preventing accidental duplicates",
-        "Overdue alerts: polling vs. webhooks — chose long-polling (30s) since backend couldn't support webhooks at the time",
-        "Audit trail UI: virtualized list (react-window) to handle 10K+ log entries without scroll jank",
-        "Bulk operations (mass-expire keys, batch plan upgrades) needed optimistic UI with rollback on API failure",
+        "Real-time print preview required a hidden iframe synced to editor state via postMessage — no third-party lib",
+        "Marks-per-question logic needed to cascade up (section totals auto-update) without circular state updates",
+        "Drag-and-drop reordering with stable keys — used nanoid for question IDs to survive list mutations",
+        "PDF export: window.print() scoped to the preview iframe with injected print-only CSS",
       ],
-      keyDecisions: "Feature-module architecture meant each domain team could work independently without merge conflicts. Kept business logic in custom hooks (not components) so the same logic could be reused across admin and ops views.",
+      keyDecisions: "Kept state local to the editor (no server round-trips during editing) for zero-latency preview updates. Chose a schema-first data model so the same structure feeds both preview and API submission.",
+      designProcess: "Designed in Figma before a single line of code — component variants mapped to React props, spacing tokens used as Figma styles, ensuring pixel-accurate handoff with zero back-and-forth on implementation.",
     },
-    color: "from-orange-600 to-red-800",
-    accentColor: "#ea580c",
+    color: "from-cyan-600 to-blue-800",
+    accentColor: "#0891b2",
   },
 ];
 
@@ -280,6 +286,20 @@ export const skills = {
     { name: "GitHub", icon: "SiGithub", color: "#ffffff" },
     { name: "Docker", icon: "SiDocker", color: "#2496ED" },
     { name: "VS Code", icon: "SiVisualstudiocode", color: "#007ACC" },
+  ],
+  "AI & Emerging Tools": [
+    { name: "Figma AI", icon: "SiFigma", color: "#F24E1E" },
+    { name: "v0 (Vercel)", icon: "SiVercel", color: "#ffffff" },
+    { name: "GitHub Copilot", icon: "SiGithubcopilot", color: "#ffffff" },
+    { name: "Prompt Engineering (UI)", icon: "CUSTOM_PROMPT", color: "#7c3aed" },
+    { name: "Claude / ChatGPT", icon: "CUSTOM_AI", color: "#10a37f" },
+  ],
+  "Design Systems & Figma": [
+    { name: "Figma (component libraries, tokens, auto-layout)", icon: "SiFigma", color: "#F24E1E" },
+    { name: "Design tokens (spacing, color, typography)", icon: "CUSTOM_TOKEN", color: "#0891b2" },
+    { name: "Component variant architecture", icon: "CUSTOM_VARIANT", color: "#7c3aed" },
+    { name: "Accessibility-first component design", icon: "CUSTOM_A11Y", color: "#059669" },
+    { name: "Design-to-code handoff", icon: "CUSTOM_HANDOFF", color: "#ea580c" },
   ],
 };
 
